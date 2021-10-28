@@ -23,6 +23,9 @@ class App extends Component{
         return(
             <div className = "container-fluid">
                 <NavBar />
+            
+                    <h1>The Place to Buy and Sell Golf Gear</h1>
+                
             </div>
         )
     }
