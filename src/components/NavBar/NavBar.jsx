@@ -1,13 +1,11 @@
 import React from "react";
 import "./NavBar.css";
-import Login from "../Login/Login";
 import {Navbar} from "react-bootstrap";
 import {Container} from "react-bootstrap";
 import {Nav} from "react-bootstrap";
 import {NavDropdown} from "react-bootstrap";
 
 function NavBar(props) {
-  let { setIsShowLogin } = props;
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,7 +15,7 @@ function NavBar(props) {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#features">Login</Nav.Link>
-            <Nav.Link href="#pricing">Sign-Up</Nav.Link>
+            <Nav.Link href="#register">Sign Up</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title="Buy" id="collasible-nav-dropdown">

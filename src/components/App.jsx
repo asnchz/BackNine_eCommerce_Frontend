@@ -2,6 +2,7 @@ import jwtDecode from "jwt-decode";
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
+import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
       >
         <div className="container-fluid">
           <NavBar />
+          <Register button type="button" data-toggle="modal" data-target="#Modal" />
           <h1>The Place to Buy and Sell Golf Gear</h1>
         </div>
       </div>
