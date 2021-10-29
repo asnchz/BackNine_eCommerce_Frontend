@@ -2,6 +2,7 @@ import jwtDecode from "jwt-decode";
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
+import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 import axios from "axios";
 
@@ -105,6 +106,8 @@ class App extends Component {
             }}
         >
           <NavBar />
+          <Register button type="button" data-toggle="modal" data-target="#Modal" />
+          <h1>The Place to Buy and Sell Golf Gear</h1>
           <p className="front-page-header">The Place to Buy and Sell your Golf gear!</p>
         </div>
       </div>

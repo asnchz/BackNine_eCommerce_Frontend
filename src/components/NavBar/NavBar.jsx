@@ -23,7 +23,7 @@ function NavBar(props) {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#features">Login</Nav.Link>
-            <Nav.Link href="#pricing">Sign-Up</Nav.Link>
+            <Nav.Link href="#register">Sign Up</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title="Buy" id="collasible-nav-dropdown">
