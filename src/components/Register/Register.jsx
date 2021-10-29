@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 const SignUpForm = (props) => {
   const history = useHistory();
 
-  const { values, handleChange, handleSubmit } = useForm(register);
+  const { formValues, handleChange, handleSubmit } = useForm(register);
 
   function register() {
     register();
@@ -34,7 +34,7 @@ const SignUpForm = (props) => {
             type="text"
             name="firstname"
             onChange={handleChange}
-            value={values.firstname}
+            value={formValues.firstname}
             required={true}
           />
         </label>
@@ -46,7 +46,7 @@ const SignUpForm = (props) => {
             type="text"
             name="lastname"
             onChange={handleChange}
-            value={values.lastname}
+            value={formValues.lastname}
             required={true}
           />
         </label>
@@ -58,7 +58,7 @@ const SignUpForm = (props) => {
             type="text"
             name="username"
             onChange={handleChange}
-            value={values.username}
+            value={formValues.username}
             required={true}
           />
         </label>
@@ -70,7 +70,7 @@ const SignUpForm = (props) => {
             type="password"
             name="password"
             onChange={handleChange}
-            value={values.password}
+            value={formValues.password}
             required={true}
           />
         </label>
@@ -82,7 +82,7 @@ const SignUpForm = (props) => {
             type="email"
             name="email"
             onChange={handleChange}
-            value={values.email}
+            value={formValues.email}
             required={true}
           />
         </label>
@@ -94,7 +94,7 @@ const SignUpForm = (props) => {
             type="text"
             name="phonenumber"
             onChange={handleChange}
-            value={values.phonenumber}
+            value={formValues.phonenumber}
             required={true}
           />
         </label>

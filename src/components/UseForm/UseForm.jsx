@@ -13,7 +13,7 @@ const UseForm = (callback) => {
     callback();
   };
 
-  return { values, handleChange, handleSubmit };
+  return { formValues, handleChange, handleSubmit };
 };
 
 export default UseForm;
