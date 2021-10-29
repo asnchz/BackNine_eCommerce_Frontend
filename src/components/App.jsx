@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
 import image from "../Image/HomePage.jpg";
+import axios from "axios";
+
 
 class App extends Component {
   state = {
@@ -16,6 +18,76 @@ class App extends Component {
       this.setState({ loggedInUser: user });
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async getProductClubs() {
+    try {
+      let response = await axios.get(
+        "https://localhost:44394/api/product/Clubs"
+      );
+      console.log(response.data);
+      this.setState({
+        Clubs: response.data,
+      });
+    } catch (ex) {
+      alert("Error in API Call");
+    }
+  }
+
+  async getProductBalls() {
+    try {
+      let response = await axios.get(
+        "https://localhost:44394/api/product/Balls"
+      );
+      console.log(response.data);
+      this.setState({
+        Balls: response.data,
+      });
+    } catch (ex) {
+      alert("Error in API Call");
+    }
+  }
+
+  async getProductBags() {
+    try {
+      let response = await axios.get(
+        "https://localhost:44394/api/product/Bags"
+      );
+      console.log(response.data);
+      this.setState({
+        Bags: response.data,
+      });
+    } catch (ex) {
+      alert("Error in API Call");
+    }
+  }
+
+  async getProductApparel() {
+    try {
+      let response = await axios.get(
+        "https://localhost:44394/api/product/Apparel"
+      );
+      console.log(response.data);
+      this.setState({
+        Apparel: response.data,
+      });
+    } catch (ex) {
+      alert("Error in API Call");
+    }
+  }
+
+  async getProductTech() {
+    try {
+      let response = await axios.get(
+        "https://localhost:44394/api/product/Tech"
+      );
+      console.log(response.data);
+      this.setState({
+        Tech: response.data,
+      });
+    } catch (ex) {
+      alert("Error in API Call");
     }
   }
 

@@ -1,13 +1,19 @@
 import React from "react";
 import "./NavBar.css";
-import Login from "../Login/Login";
 import {Navbar} from "react-bootstrap";
 import {Container} from "react-bootstrap";
 import {Nav} from "react-bootstrap";
 import {NavDropdown} from "react-bootstrap";
+import axios from "axios";
+
 
 function NavBar(props) {
-  let { setIsShowLogin } = props;
+  // let { setIsShowLogin } = props;
+
+  // let handleClick = () => {
+  //   setIsShowLogin((loginInfo) => !loginInfo);
+  // };
+
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
