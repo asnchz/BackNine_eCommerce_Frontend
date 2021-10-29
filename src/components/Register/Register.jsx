@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
-import useForm from "../UseForm/useForm";
+import UseForm from "../UseForm/UseForm";
 import { useHistory } from "react-router-dom";
 
-const SignUpForm = (props) => {
+const Register = (props) => {
   const history = useHistory();
 
-  const { formValues, handleChange, handleSubmit } = useForm(register);
+  const { formValues, handleChange, handleSubmit } = UseForm(userRegister);
 
-  function register() {
+  function userRegister() {
     register();
     history.push("/");
   }
@@ -106,4 +106,4 @@ const SignUpForm = (props) => {
   );
 };
 
-export default SignUpForm;
+export default Register;

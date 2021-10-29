@@ -9,9 +9,6 @@ import {NavDropdown} from "react-bootstrap";
 function NavBar(props) {
   let { setIsShowLogin } = props;
 
-  let handleClick = () => {
-    setIsShowLogin((loginInfo) => !loginInfo);
-  };
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
