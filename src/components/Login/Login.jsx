@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import axios from axios;
+import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 
 const Login = (props) => {
-    const {setUserToken}= props;
+    const {setUserToken} = props
     const history = useHistory();
 
     const userLogin = {
@@ -36,22 +36,26 @@ const Login = (props) => {
     }
 
   return (
-      <div className={`${!props ? "active": ""} show`}>
+      <div className={`${!loginInfo ? "active": ""} show`}>
           <div className="login-form">
               <div className="form-box solid">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                       <h1 className="login-text">Login</h1>
                       <label>Username</label><br></br>
                       <input
                       type = "text"
+                      placeholder = "Enter Username.."
                       name = "username"
                       className = "login-box"
+                      onChange ={handleChange}
                       /><br></br>
                       <label>Password</label><br></br>
                       <input
                       type = "password"
+                      placeholder = "Enter Password.."
                       name = "password"
                       className = "login-box"
+                      onChange ={handleChange}
                       /><br></br>
                       <input type ="submit" value ="LOGIN" className ="login-btn"/>
                   </form>
