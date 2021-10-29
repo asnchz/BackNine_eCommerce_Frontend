@@ -21,18 +21,19 @@ class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          height: "100%",
-          width: "100%"
-        }}
-      >
-        <div className="container-fluid">
+      <div>
+        <div
+          style={{
+              backgroundImage: `url(${image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              position: "absolute",
+              height: "100vh",
+              width: "100vw",
+            }}
+        >
           <NavBar />
-          <h1>The Place to Buy and Sell Golf Gear</h1>
+          <p className="front-page-header">The Place to Buy and Sell your Golf gear!</p>
         </div>
       </div>
     );
