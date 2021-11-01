@@ -1,10 +1,11 @@
 import React from "react";
 import "./NavBar.css";
-import { Navbar } from "react-bootstrap";
-import { Container } from "react-bootstrap";
-import { Nav } from "react-bootstrap";
-import { NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import {Navbar} from "react-bootstrap";
+import {Container} from "react-bootstrap";
+import {Nav} from "react-bootstrap";
+import {NavDropdown} from "react-bootstrap";
+import axios from "axios";
+
 
 function NavBar(props) {
   // let { setIsShowLogin } = props;
@@ -12,6 +13,8 @@ function NavBar(props) {
   // let handleClick = () => {
   //   setIsShowLogin((loginInfo) => !loginInfo);
   // };
+
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -21,10 +24,8 @@ function NavBar(props) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
-            <Nav.Link href="../Register/Register.jsx">Sign-Up</Nav.Link>
+            <Nav.Link href="#features">Login</Nav.Link>
+            <Nav.Link href="#register">Sign Up</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title="Buy" id="collasible-nav-dropdown">

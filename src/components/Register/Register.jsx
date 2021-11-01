@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
-import useForm from "../UseForm/useForm";
+import UseForm from "../UseForm/UseForm";
 import { useHistory } from "react-router-dom";
 
-const SignUpForm = (props) => {
+const Register = (props) => {
   const history = useHistory();
 
-  const { formValues, handleChange, handleSubmit } = useForm(register);
+  const { formValues, handleChange, handleSubmit } = UseForm(userRegister);
 
-  function register() {
+  function userRegister() {
     register();
     history.push("/");
   }
@@ -24,86 +24,111 @@ const SignUpForm = (props) => {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          First Name:
-          <input
-            id="firstName"
-            type="text"
-            name="firstname"
-            onChange={handleChange}
-            value={formValues.firstname}
-            required={true}
-          />
-        </label>
-
-        <label>
-          Last Name:
-          <input
-            id="lastName"
-            type="text"
-            name="lastname"
-            onChange={handleChange}
-            value={formValues.lastname}
-            required={true}
-          />
-        </label>
-
-        <label>
-          Username:
-          <input
-            id="userName"
-            type="text"
-            name="username"
-            onChange={handleChange}
-            value={formValues.username}
-            required={true}
-          />
-        </label>
-
-        <label>
-          Password:
-          <input
-            id="passWord"
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={formValues.password}
-            required={true}
-          />
-        </label>
-
-        <label>
-          Email:
-          <input
-            id="email"
-            type="email"
-            name="email"
-            onChange={handleChange}
-            value={formValues.email}
-            required={true}
-          />
-        </label>
-
-        <label>
-          Phone Number:
-          <input
-            id="phoneNumber"
-            type="text"
-            name="phonenumber"
-            onChange={handleChange}
-            value={formValues.phonenumber}
-            required={true}
-          />
-        </label>
-        <button className="mt-2" type="submit">
-          Submit
-        </button>
-      </form>
+    <div
+      class="modal fade"
+      id="Modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">
+              Register New Account
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onSubmit={handleSubmit}>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>First Name</label>
+                  <input
+                    id="firstname"
+                    class="form-control"
+                    onChange={handleChange}
+                    value={formValues.firstname}
+                    required={true}
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Last Name</label>
+                  <input
+                    id="lastname"
+                    class="form-control"
+                    onChange={handleChange}
+                    value={formValues.firstname}
+                    required={true}
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Username</label>
+                  <input
+                    id="username"
+                    class="form-control"
+                    onChange={handleChange}
+                    value={formValues.firstname}
+                    required={true}
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Password</label>
+                  <input
+                    id="password"
+                    class="form-control"
+                    onChange={handleChange}
+                    value={formValues.password}
+                    required={true}
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Email</label>
+                  <input
+                    id="email"
+                    class="form-control"
+                    onChange={handleChange}
+                    value={formValues.email}
+                    required={true}
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Phone Number</label>
+                  <input
+                    id="phonenumber"
+                    class="form-control"
+                    onChange={handleChange}
+                    value={formValues.phonenumber}
+                    required={true}
+                  />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Create Account
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default SignUpForm;
+export default Register;
