@@ -1,69 +1,60 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { Component } from "react";
+import "./Login.css";
 
-const Login = (props) => {
-  const { setUserToken } = props;
-  const history = useHistory();
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
 
-  const userLogin = {
-    username: "",
-    password: "",
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
-  const [loginInfo, setLoginInfo] = useState(userLogin);
 
-  const handleChange = (event) => {
-    setLoginInfo({ ...loginInfo, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    login();
+    const login = {
+      username: this.state.username,
+      password: this.state.password,
+    };
+    this.props.userLogin(login);
+    console.log(`handle submit" ${login}`);
+    this.setState({
+      username: "",
+      password: "",
+    });
   };
 
-  const login = async () => {
-    let user = userLogin;
-    let response = await axios
-      .post("https://localhost:44394/api/authentication/login", user)
-      .catch(function (error) {
-        if (error.response) {
-          alert("Login is incorrect. Try again");
-        }
-      });
-    if (response !== undefined) {
-      setUserToken(response.data.token);
-      history.push("/home");
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
+  render() {
+    return (
       <div className="login-wrapper">
         <h2>Please Log In</h2>
-        <label>
-          <p>Username</p>
-        </label>
-        <input
-          type="text"
-          placeholder="Enter Username.."
-          onChange={handleChange}
-          required={true}
-        />
-        <label>
-          <p>Password</p>
-        </label>
-        <input
-          type="password"
-          placeholder="Enter Password.."
-          onChange={handleChange}
-          required={true}
-        />
-        <div>
-          <button type="submit">Login</button>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            onChange={this.handleChange}
+            value={this.state.username}
+          />
+          <label>Password</label>
+          <input
+            type="text"
+            name="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
+          <button type="submit">Submit</button>
+        </form>
       </div>
-    </form>
-  );
-};
+    );
+  }
+}
 
 export default Login;

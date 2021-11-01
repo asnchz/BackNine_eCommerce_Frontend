@@ -11,7 +11,7 @@ import ProductList from "./ProductList/ProductList";
 
 class App extends Component {
   state = {
-    // loggedInUser: null,
+    loggedInUser: [],
     products: [],
   };
 
@@ -39,6 +39,26 @@ class App extends Component {
       });
     } catch (ex) {
       alert("Error in API Call");
+    }
+  }
+
+  registerNewUser = async (user) => {
+    try {
+      const response = await axios.post('https://localhost:44394/api/authentication' , user);
+      this.loggedInUser({'userName' : user.userName, 'password': user.password })
+      window.location = '/';
+    } catch(error) {
+      console.log(error, 'error with register user');
+    }
+  }
+
+  userLogin = async (login) => {
+    try {
+      let response = await axios.post('https://localhost:44394/api/authentication/login', login);
+      localStorage.setItem('token', response.data.token);
+      window.location = '/';
+    } catch(error) {
+      console.log(error, 'error with logged in user');
     }
   }
 
@@ -70,8 +90,8 @@ class App extends Component {
                 }
               }}
             />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Register} />
+            <Route path="/login" render={props => <Login {...props} userLogin={this.userLogin} />} />
+            <Route path="/signup" render={props => <Register {...props} registerNewUser={this.registerNewUser} />} />
             <Route path="/productDetails" component ={ProductList} />
           </Switch>
 
@@ -86,9 +106,6 @@ class App extends Component {
             <ProductList products={this.state.selectedCategoryData} />
           )}
         </div>
-        <Switch>
-          <Route></Route>
-        </Switch>
       </div>
     );
   }

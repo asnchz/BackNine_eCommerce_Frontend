@@ -1,95 +1,101 @@
-import React from "react";
-import axios from "axios";
-import UseForm from "../UseForm/UseForm";
-import { useHistory } from "react-router-dom";
+import React, { Component } from "react";
 
-const Register = (props) => {
-  const history = useHistory();
-
-  const { formValues, handleChange, handleSubmit } = UseForm(userRegister);
-
-  function userRegister() {
-    register();
-    history.push("/");
+class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+      email: "",
+      phonenumber: "",
+    };
   }
 
-  const register = async () => {
-    await axios
-      .post(`https://localhost:44394/api/authentication`, formValues)
-      .then((response) => {
-        props.getUser(response.data);
-        props.getItemsInCart(response.data);
-      })
-      .catch((error) => console.log(error));
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
 
-  return (
-          <div class="login-wrapper">
-            <form onSubmit={handleSubmit}>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <label>First Name</label>
-                  <input
-                    id="firstname"
-                    onChange={handleChange}
-                    value={formValues.firstname}
-                    required={true}
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Last Name</label>
-                  <input
-                    id="lastname"
-                    onChange={handleChange}
-                    value={formValues.lastname}
-                    required={true}
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Username</label>
-                  <input
-                    id="username"
-                    onChange={handleChange}
-                    value={formValues.username}
-                    required={true}
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Password</label>
-                  <input
-                    id="password"
-                    onChange={handleChange}
-                    value={formValues.password}
-                    required={true}
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Email</label>
-                  <input
-                    id="email"
-                    onChange={handleChange}
-                    value={formValues.email}
-                    required={true}
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Phone Number</label>
-                  <input
-                    id="phonenumber"
-                    onChange={handleChange}
-                    value={formValues.phonenumber}
-                    required={true}
-                  />
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" >
-                  Create Account
-                </button>
-              </div>
-            </form>
-          </div>
-  );
-};
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const user = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      phonenumber: this.state.phonenumber,
+    };
+    this.props.registerNewUser(user);
+    this.setState({
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: "",
+      email: "",
+      phonenumber: "",
+    });
+  };
+
+  render() {
+    return (
+      <div class="login-wrapper">
+        <h2>Register New Account</h2>
+        <form onSubmit={this.handleSubmit}>
+          <table>
+              <label>First Name</label>
+              <input
+                type="text"
+                name="firstname"
+                onChange={this.handleChange}
+                value={this.state.firstname}
+              />
+              <label>Last Name</label>
+              <input
+                type="text"
+                name="lastname"
+                onChange={this.handleChange}
+                value={this.state.lastname}
+              />
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                onChange={this.handleChange}
+                value={this.state.username}
+              />
+
+              <label>Password</label>
+              <input
+                type="text"
+                name="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+
+              <label>Email</label>
+              <input
+                type="text"
+                name="email"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
+              <label>Phone Number</label>
+              <input
+                type="text"
+                name="phonenumber"
+                onChange={this.handleChange}
+                value={this.state.phonenumber}
+              />
+            <button type="submit">Create Account</button>
+          </table>
+        </form>
+      </div>
+    );
+  }
+}
 
 export default Register;
