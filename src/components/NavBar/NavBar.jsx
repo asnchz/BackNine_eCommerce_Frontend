@@ -4,7 +4,7 @@ import {Navbar} from "react-bootstrap";
 import {Container} from "react-bootstrap";
 import {Nav} from "react-bootstrap";
 import {NavDropdown} from "react-bootstrap";
-import axios from "axios";
+import { Link } from "react-router-dom"
 
 
 function NavBar(props) {
@@ -24,8 +24,12 @@ function NavBar(props) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Login</Nav.Link>
-            <Nav.Link href="#register">Sign Up</Nav.Link>
+            <Link to ="/login">
+              <button>Login</button>
+            </Link>
+            <Link to ="/signup">
+              <button type="button" data-toggle="Modal" data-target="Modal">Sign Up</button>
+            </Link>
           </Nav>
           <Nav>
             <NavDropdown title="Buy" id="collasible-nav-dropdown">

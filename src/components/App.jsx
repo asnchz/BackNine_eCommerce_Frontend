@@ -5,8 +5,8 @@ import NavBar from "./NavBar/NavBar";
 import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 import axios from "axios";
-
->>>>>>> 32ea14c544c2ce6a20713bf62377bc59c0d9b740
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Login from "./Login/Login"
 
 class App extends Component {
   state = {
@@ -22,6 +22,7 @@ class App extends Component {
       console.log(error);
     }
   }
+
 
   async getProductClubs() {
     try {
@@ -94,6 +95,7 @@ class App extends Component {
   }
 
   render() {
+    const user = this.state.user;
     return (
       <div>
         <div
@@ -106,9 +108,24 @@ class App extends Component {
               width: "100vw",
             }}
         >
-          <NavBar />
-          <Register button type="button" data-toggle="modal" data-target="#Modal" />
-          <h1>The Place to Buy and Sell Golf Gear</h1>
+          <div>
+          <NavBar user={user} />
+          </div>
+          <Switch>
+            <Route
+            path ='/profile'
+            render= {props =>{
+              if(!user){
+                return<Redirect to="/login" />;
+              } else{
+                return<App {...props} user={user} />
+              }
+            }} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component = {Register} />
+            {/* <Route path="/productDetails" component ={ProductDetails} /> */}
+          </Switch>
+          
           <p className="front-page-header">The Place to Buy and Sell your Golf gear!</p>
         </div>
       </div>

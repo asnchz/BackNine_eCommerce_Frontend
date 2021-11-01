@@ -37,7 +37,6 @@ const Login = (props) => {
   };
 
   return (
-    <div className={`${!loginInfo ? "active" : ""} show`}>
       <div className="login-form">
         <div className="form-box solid">
           <form onSubmit={handleSubmit}>
@@ -66,7 +65,6 @@ const Login = (props) => {
           </form>
         </div>
       </div>
-    </div>
   );
 };
 
