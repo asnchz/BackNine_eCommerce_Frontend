@@ -1,12 +1,11 @@
 import jwtDecode from "jwt-decode";
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
 import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 import axios from "axios";
-import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login/Login";
 import ProductList from "./ProductList/ProductList";
 
@@ -73,7 +72,7 @@ class App extends Component {
             />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Register} />
-            <Route path="/productDetails" component ={ProductDetails} />
+            <Route path="/productDetails" component ={ProductList} />
           </Switch>
 
           <p className="front-page-header">
@@ -83,7 +82,7 @@ class App extends Component {
             "Potential prop data: ",
             this.state.selectedCategoryData
           )}
-          {this.state.selectedCategoryData != undefined && (
+          {this.state.selectedCategoryData !== undefined && (
             <ProductList products={this.state.selectedCategoryData} />
           )}
         </div>

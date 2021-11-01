@@ -18,7 +18,7 @@ function NavBar(props) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand to ="/home">
           <h1>BackNine</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -46,7 +46,7 @@ function NavBar(props) {
               <NavDropdown.Item href="#action/4.4">Tech</NavDropdown.Item>
               <NavDropdown.Item href="#action/4.5">Apparel</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link eventKey={2} href="#memes">
+            <Nav.Link eventKey={2} href="/shoppingcart">
               Cart
             </Nav.Link>
           </Nav>
