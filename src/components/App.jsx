@@ -8,6 +8,7 @@ import image from "../Image/HomePage.jpg";
 import axios from "axios";
 import Login from "./Login/Login";
 import ProductList from "./ProductList/ProductList";
+import ProductDetails from "./ProductDetails/ProductDetails";
 
 class App extends Component {
   state = {
@@ -76,9 +77,7 @@ class App extends Component {
             width: "100vw",
           }}
         >
-          <div>
-            <NavBar user={user} />
-          </div>
+          <NavBar user={user} />
           <Switch>
             <Route
               path="/profile"
@@ -92,21 +91,23 @@ class App extends Component {
             />
             <Route path="/login" render={props => <Login {...props} userLogin={this.userLogin} />} />
             <Route path="/signup" render={props => <Register {...props} registerNewUser={this.registerNewUser} />} />
-            <Route path="/productDetails" component ={ProductList} />
+            <Route path="/productList" component={ProductList} />
+            <Route path="/productDetails" component ={ProductDetails} />
           </Switch>
 
-          <p className="front-page-header">
-            The Place to Buy and Sell your Golf gear!
-          </p>
-          {console.log(
-            "Potential prop data: ",
-            this.state.selectedCategoryData
-          )}
-          {this.state.selectedCategoryData !== undefined && (
-            <ProductList products={this.state.selectedCategoryData} />
-          )}
+            <p className="front-page-header">
+              The Place to Buy and Sell your Golf gear!
+            </p>
+
+            {console.log(
+              "Prop data from App: ",
+              this.state.selectedCategoryData
+            )}
+            {this.state.selectedCategoryData !== undefined && (
+              <ProductList products={this.state.selectedCategoryData} />
+            )}
+          </div>
         </div>
-      </div>
     );
   }
 }
