@@ -6,15 +6,13 @@ import NavBar from "./NavBar/NavBar";
 import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 import axios from "axios";
-<<<<<<< HEAD
-=======
 import Login from "./Login/Login";
 import ProductList from "./ProductList/ProductList";
->>>>>>> 7d9172f5cd3e3d408af61fb7b918d3fee01e04a1
+import ProductDetails from "./ProductDetails/ProductDetails";
 
 class App extends Component {
   state = {
-    // loggedInUser: null,
+    loggedInUser: null,
     products: [],
   };
 
@@ -59,49 +57,45 @@ class App extends Component {
             width: "100vw",
           }}
         >
-<<<<<<< HEAD
-          <NavBar />
-          <Switch>
-            <Route exact path='/login'>
-              <Login/>
-            </Route>
-          </Switch>
-          <p className="front-page-header">The Place to Buy and Sell your Golf gear!</p>
-=======
+          <NavBar user={user} />
           <div>
-            <NavBar user={user} />
-          </div>
-          <Switch>
-            <Route
-              path="/profile"
-              render={(props) => {
-                if (!user) {
-                  return <Redirect to="/login" />;
-                } else {
-                  return <App {...props} user={user} />;
-                }
-              }}
-            />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Register} />
-            <Route path="/productDetails" component ={ProductList} />
-          </Switch>
+            <Switch>
+              <Route
+                path="/profile"
+                render={(props) => {
+                  if (!user) {
+                    return <Redirect to="/login" />;
+                  } else {
+                    return <App {...props} user={user} />;
+                  }
+                }}
+              />
+              <Route
+                path="/login"
+                render={() => <Login userLogin={this.userLogin} />}
+              />
+              <Route
+                path="/signup"
+                render={() => (
+                  <Register registerNewUser={this.registerNewUser} />
+                )}
+              />
+              <Route path="/productList" component={ProductList} />
+              <Route path="/productDetails" component={ProductDetails} />
+            </Switch>
+            <p className="front-page-header">
+              The Place to Buy and Sell your Golf gear!
+            </p>
 
-          <p className="front-page-header">
-            The Place to Buy and Sell your Golf gear!
-          </p>
-          {console.log(
-            "Potential prop data: ",
-            this.state.selectedCategoryData
-          )}
-          {this.state.selectedCategoryData !== undefined && (
-            <ProductList products={this.state.selectedCategoryData} />
-          )}
->>>>>>> 7d9172f5cd3e3d408af61fb7b918d3fee01e04a1
+            {console.log(
+              "Prop data from App: ",
+              this.state.selectedCategoryData
+            )}
+            {this.state.selectedCategoryData !== undefined && (
+              <ProductList products={this.state.selectedCategoryData} />
+            )}
+          </div>
         </div>
-        <Switch>
-          <Route></Route>
-        </Switch>
       </div>
     );
   }

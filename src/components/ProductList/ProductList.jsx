@@ -4,13 +4,13 @@ import { useHistory } from "react-router";
 
 const ProductList = (props) => {
     const history = useHistory();
-    console.log(props);
+    console.log("from ProductList: ", props);
 
-    const handleDetails = (record) => {
+    const handleDetails = (product) => {
         history.push({
             pathname: "/productDetails",
             state: {
-                recordForDisplay: record,
+                productForDisplay: product,
             },
         });
     }
@@ -22,7 +22,7 @@ const ProductList = (props) => {
                     <th> Category </th>
                     <th> Description </th>
                     <th> Price </th>
-                    <th> Actions </th>
+                    <th> Details </th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@ const ProductList = (props) => {
                             <td>{product.price}</td>
                             <td>
                                 <button onClick={() => handleDetails(product) } >
-                                 Detail </button></td>
+                                 Review/Rating </button></td>
                         </tr>
                     );
                 })}
