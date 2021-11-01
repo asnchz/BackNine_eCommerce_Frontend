@@ -1,26 +1,30 @@
 import React from "react";
 import "./NavBar.css";
-import Login from "../Login/Login";
-import {Navbar} from "react-bootstrap";
-import {Container} from "react-bootstrap";
-import {Nav} from "react-bootstrap";
-import {NavDropdown} from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 function NavBar(props) {
-  let { setIsShowLogin } = props;
+  // let { setIsShowLogin } = props;
 
-  let handleClick = () => {
-    setIsShowLogin((loginInfo) => !loginInfo);
-  };
+  // let handleClick = () => {
+  //   setIsShowLogin((loginInfo) => !loginInfo);
+  // };
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home"><h1>BackNine</h1></Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <h1>BackNine</h1>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Login</Nav.Link>
-            <Nav.Link href="#pricing">Sign-Up</Nav.Link>
+            <LinkContainer to="/login">
+              <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+            <Nav.Link href="../Register/Register.jsx">Sign-Up</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title="Buy" id="collasible-nav-dropdown">

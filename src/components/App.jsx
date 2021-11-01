@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./NavBar/NavBar";
 import image from "../Image/HomePage.jpg";
+import {Route, Switch} from "react-router-dom";
+import Login from "../components/Login/Login";
 
 class App extends Component {
   state = {
@@ -32,6 +34,11 @@ class App extends Component {
       >
         <div className="container-fluid">
           <NavBar />
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+              </Route>
+              </Switch>
           <h1>The Place to Buy and Sell Golf Gear</h1>
         </div>
       </div>
