@@ -22,7 +22,7 @@ const Login = (props) => {
   };
 
   const login = async () => {
-    let user = loginInfo;
+    let user = userLogin;
     let response = await axios
       .post("https://localhost:44394/api/authentication/login", user)
       .catch(function (error) {
@@ -37,36 +37,32 @@ const Login = (props) => {
   };
 
   return (
-    <div className={`${!loginInfo ? "active" : ""} show`}>
-      <div className="login-form">
-        <div className="form-box solid">
-          <form onSubmit={handleSubmit}>
-            <h1 className="login-text">Login</h1>
-            <label>Username</label>
-            <br></br>
-            <input
-              type="text"
-              placeholder="Enter Username.."
-              name="username"
-              className="login-box"
-              onChange={handleChange}
-            />
-            <br></br>
-            <label>Password</label>
-            <br></br>
-            <input
-              type="password"
-              placeholder="Enter Password.."
-              name="password"
-              className="login-box"
-              onChange={handleChange}
-            />
-            <br></br>
-            <input type="submit" value="LOGIN" className="login-btn" />
-          </form>
+    <form onSubmit={handleSubmit}>
+      <div className="login-wrapper">
+        <h2>Please Log In</h2>
+        <label>
+          <p>Username</p>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter Username.."
+          onChange={handleChange}
+          required={true}
+        />
+        <label>
+          <p>Password</p>
+        </label>
+        <input
+          type="password"
+          placeholder="Enter Password.."
+          onChange={handleChange}
+          required={true}
+        />
+        <div>
+          <button type="submit">Login</button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
