@@ -6,14 +6,9 @@ import NavBar from "./NavBar/NavBar";
 import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 import axios from "axios";
-<<<<<<< HEAD
-import { Switch, Route, Redirect } from 'react-router-dom';
-import Login from "./Login/Login"
-=======
+import { Switch, Route, Redirect } from "react-router-dom";
+import Login from "./Login/Login";
 import ProductList from "./ProductList/ProductList";
-
-// >>>>>>> 32ea14c544c2ce6a20713bf62377bc59c0d9b740
->>>>>>> d3a8ce3b137bed960dd391dfd555da52b7535117
 
 class App extends Component {
   state = {
@@ -29,40 +24,6 @@ class App extends Component {
     } catch (error) {
       console.log(error);
     }
-<<<<<<< HEAD
-  }
-
-
-  async getProductClubs() {
-    try {
-      let response = await axios.get(
-        "https://localhost:44394/api/product/Clubs"
-      );
-      console.log(response.data);
-      this.setState({
-        Clubs: response.data,
-      });
-    } catch (ex) {
-      alert("Error in API Call");
-    }
-  }
-
-  async getProductBalls() {
-    try {
-      let response = await axios.get(
-        "https://localhost:44394/api/product/Balls"
-      );
-      console.log(response.data);
-      this.setState({
-        Balls: response.data,
-      });
-    } catch (ex) {
-      alert("Error in API Call");
-    }
-  }
-=======
->>>>>>> d3a8ce3b137bed960dd391dfd555da52b7535117
-
     this.getProductCategory("Clubs");
   }
 
@@ -75,26 +36,12 @@ class App extends Component {
       console.log(response.data);
       this.setState({
         selectedCategoryData: response.data,
-        selectedCategory: category
+        selectedCategory: category,
       });
     } catch (ex) {
       alert("Error in API Call");
     }
   }
-
-  // async getProductCategory() {
-  //   try {
-  //     let response = await axios.get(
-  //       `https://localhost:44394/api/product/Clubs`
-  //     );
-  //     console.log(response.data);
-  //     this.setState({
-  //       selectedCategoryData: response.data,
-  //     });
-  //   } catch (ex) {
-  //     alert("Error in API Call");
-  //   }
-  // }
 
   render() {
     const user = this.state.user;
@@ -110,41 +57,35 @@ class App extends Component {
             width: "100vw",
           }}
         >
-<<<<<<< HEAD
           <div>
-          <NavBar user={user} />
+            <NavBar user={user} />
           </div>
           <Switch>
             <Route
-            path ='/profile'
-            render= {props =>{
-              if(!user){
-                return<Redirect to="/login" />;
-              } else{
-                return<App {...props} user={user} />
-              }
-            }} />
+              path="/profile"
+              render={(props) => {
+                if (!user) {
+                  return <Redirect to="/login" />;
+                } else {
+                  return <App {...props} user={user} />;
+                }
+              }}
+            />
             <Route path="/login" component={Login} />
-            <Route path="/signup" component = {Register} />
-            {/* <Route path="/productDetails" component ={ProductDetails} /> */}
+            <Route path="/signup" component={Register} />
+            <Route path="/productDetails" component ={ProductDetails} />
           </Switch>
-          
-          <p className="front-page-header">The Place to Buy and Sell your Golf gear!</p>
-=======
-          <NavBar />
-          <Register
-            button
-            type="button"
-            data-toggle="modal"
-            data-target="#Modal"
-          />
-          <h1>The Place to Buy and Sell Golf Gear</h1>
+
           <p className="front-page-header">
             The Place to Buy and Sell your Golf gear!
           </p>
-          {console.log("Potential prop data: ", this.state.selectedCategoryData )}
-          {this.state.selectedCategoryData != undefined && <ProductList products={this.state.selectedCategoryData} /> }
->>>>>>> d3a8ce3b137bed960dd391dfd555da52b7535117
+          {console.log(
+            "Potential prop data: ",
+            this.state.selectedCategoryData
+          )}
+          {this.state.selectedCategoryData != undefined && (
+            <ProductList products={this.state.selectedCategoryData} />
+          )}
         </div>
         <Switch>
           <Route></Route>
