@@ -6,8 +6,6 @@ import Register from "./Register/Register";
 import image from "../Image/HomePage.jpg";
 import axios from "axios";
 
->>>>>>> 32ea14c544c2ce6a20713bf62377bc59c0d9b740
-
 class App extends Component {
   state = {
     loggedInUser: null,
@@ -107,8 +105,11 @@ class App extends Component {
             }}
         >
           <NavBar />
-          <Register button type="button" data-toggle="modal" data-target="#Modal" />
-          <h1>The Place to Buy and Sell Golf Gear</h1>
+          <Switch>
+            <Route exact path='/login'>
+              <Login/>
+            </Route>
+          </Switch>
           <p className="front-page-header">The Place to Buy and Sell your Golf gear!</p>
         </div>
       </div>
