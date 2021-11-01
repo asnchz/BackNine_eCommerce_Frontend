@@ -1,0 +1,41 @@
+.table-container {
+    /* display: flex; */
+    flex-direction: column;
+    gap: 10px;
+    padding: 3rem;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 3px solid #969696ff;
+    text-align: left;
+    padding: 15px;
+    font-size: 15px;
+    color: white;
+  }
+  
+  th {
+    background-color: #c6878fff;
+  }
+  
+  td {
+    background-color: #253d5bff;
+  }
+  
+  form {
+    display: flex;
+    gap: 5px;
+  }
+  
+  form td:last-child {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  form * {
+    font-size: 15px;
+  }
