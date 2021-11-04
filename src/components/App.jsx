@@ -9,22 +9,33 @@ import axios from "axios";
 import Login from "./Login/Login";
 import ProductList from "./ProductList/ProductList";
 import ProductDetails from "./ProductDetails/ProductDetails";
+import ShoppingCart from "./ShoppingCart/ShoppingCart";
 
 class App extends Component {
   state = {
-    loggedInUser: [],
+    loggedInUser: null,
     products: [],
+    cart:[],
   };
 
   componentDidMount() {
     const jwt = localStorage.getItem("token");
+    this.getAllProducts();
     try {
       const user = jwtDecode(jwt);
       this.setState({ loggedInUser: user });
+      console.log(this.state.products);
     } catch (error) {
       console.log(error);
     }
     this.getProductCategory("Clubs");
+  }
+
+  getAllProducts = async ()  => {
+    let response = await axios.get('https://localhost:44394/api/products') ;
+    this.setState({
+      products : response.data,
+    });
   }
 
   async getProductCategory(category) {
@@ -43,28 +54,46 @@ class App extends Component {
     }
   }
 
+  getCartProducts = async () => {
+    let response = await axios.get("https://localhost:44394/api/cart");
+    this.setState({
+      cart: response.data,
+    });
+  };
+
+  search = (results) => {
+    console.log(results);
+    this.setState({
+      products: results,
+    });
+  };
+
   registerNewUser = async (user) => {
     try {
       const response = await axios.post('https://localhost:44394/api/authentication' , user);
       this.loggedInUser({'userName' : user.userName, 'password': user.password })
       window.location = '/';
     } catch(error) {
-      console.log(error, 'error with register user');
+      console.log(error, 'Invalid input');
     }
   }
 
   userLogin = async (login) => {
     try {
       let response = await axios.post('https://localhost:44394/api/authentication/login', login);
+      console.log(response);
+      this.setState({
+        user: response.data.token
+      });
       localStorage.setItem('token', response.data.token);
+      alert(`Welcome!`)
       window.location = '/';
     } catch(error) {
-      console.log(error, 'error with logged in user');
+      alert('Username and/or password is incorrect. Try again or create account');
     }
   }
 
   render() {
-    const user = this.state.user;
     return (
       <div>
         <div
@@ -77,22 +106,23 @@ class App extends Component {
             width: "100vw",
           }}
         >
-          <NavBar user={user} />
+          <NavBar user={this.state.user} />
           <Switch>
             <Route
               path="/profile"
               render={(props) => {
-                if (!user) {
-                  return <Redirect to="/login" />;
+                if (!this.state.user) {
+                  return (<Login {...props} userLogin={this.userLogin} />);
                 } else {
-                  return <App {...props} user={user} />;
+                  return( <ProductList {...props} productList={this.state.products} search={this.search} />);
                 }
               }}
             />
             <Route path="/login" render={props => <Login {...props} userLogin={this.userLogin} />} />
             <Route path="/signup" render={props => <Register {...props} registerNewUser={this.registerNewUser} />} />
-            <Route path="/productList" component={ProductList} />
+            <Route path="/productList" render={props => <ProductList {...props} getAllProducts = {this.getAllProducts} />} />
             <Route path="/productDetails" component ={ProductDetails} />
+            <Route path="/shoppingCart" render={(props) => (<ShoppingCart {...props} cartProducts={this.state.cart} />)}/>
           </Switch>
 
             <p className="front-page-header">

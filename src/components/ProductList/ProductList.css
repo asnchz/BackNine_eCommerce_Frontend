@@ -1,5 +1,6 @@
 .table-container {
     /* display: flex; */
+    margin-top: 38rem;
     flex-direction: column;
     gap: 10px;
     padding: 3rem;

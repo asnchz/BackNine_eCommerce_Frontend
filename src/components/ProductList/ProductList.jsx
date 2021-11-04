@@ -13,7 +13,7 @@ const ProductList = (props) => {
                 productForDisplay: product,
             },
         });
-    }
+    };
     return (
         <table className="table-container">
             <thead>
@@ -35,7 +35,7 @@ const ProductList = (props) => {
                             <td>{product.price}</td>
                             <td>
                                 <button onClick={() => handleDetails(product) } >
-                                 Review/Rating </button></td>
+                                 Review/Rating{" "} </button></td>
                         </tr>
                     );
                 })}
